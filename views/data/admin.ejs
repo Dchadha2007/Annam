@@ -1,0 +1,419 @@
+<%- layout('layouts/boilerplate') %>
+
+    <div class="admin-dashboard">
+
+        <!-- ==========================
+         ADMIN SIDEBAR
+    =========================== -->
+
+        <aside class="admin-sidebar">
+
+
+
+            <nav class="admin-menu">
+
+                <a href="#dashboard" class="active">
+
+                    <i class="fas fa-chart-pie"></i>
+
+                    Dashboard
+
+                </a>
+
+
+                <a href="#donations">
+
+                    <i class="fas fa-box"></i>
+
+                    Donations
+
+                </a>
+
+
+                <a href="#volunteers">
+
+                    <i class="fas fa-users"></i>
+
+                    Volunteers
+
+                </a>
+
+
+                <a href="#reports">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    Reports
+
+                </a>
+
+
+                <a href="/">
+
+                    <i class="fas fa-house"></i>
+
+                    Website
+
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+
+        <!-- ==========================
+         MAIN CONTENT
+    =========================== -->
+
+        <main class="admin-main">
+
+
+            <!-- ADMIN NAVBAR -->
+
+            <div class="admin-navbar">
+
+                <div>
+
+                    <h3>Admin Dashboard</h3>
+
+                    <p>
+                        Food Donation Platform Management System
+                    </p>
+
+                </div>
+
+
+                <div class="admin-profile">
+
+                    <div class="notification-icon">
+
+                        <i class="fas fa-bell"></i>
+
+                        <span>4</span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            <%= data.username %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="admin-avatar">
+
+                        <i class="fas fa-user-shield"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==========================
+             DASHBOARD STATS
+        =========================== -->
+
+            <section id="dashboard">
+                <div class="row g-3">
+                    <div class="col-xl col-md">
+                        <div class="admin-stat-card">
+                            <div>
+                                <p>Total Volunteers</p>
+                                <h2>
+                                    <%= data.volunteers.length %>
+                                </h2>
+                            </div>
+                            <div class="admin-stat-icon bg-warning">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl col-md col-sm">
+                        <div class="admin-stat-card">
+                            <div>
+                                <p>Meals Distributed</p>
+                                <h2>
+                                    <%= data.meals_distributed.length %>
+                                </h2>
+                            </div>
+                            <div class="admin-stat-icon bg-danger">
+                                <i class="fas fa-bowl-food"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ==========================
+             ADMIN INFORMATION CARDS
+        =========================== -->
+
+            <div class="row g-4">
+
+
+                <!-- RECENT DONATIONS -->
+
+
+                <div class="col-xl-8">
+
+                    <section id="donations" class="admin-section">
+
+                        <div class="admin-section-header">
+
+                            <div>
+
+                                <h3>Recent Donations</h3>
+
+                                <p>
+                                    Latest food donation activity.
+                                </p>
+
+                            </div>
+
+
+                            <button class="btn btn-outline-success">
+
+                                View All
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="admin-card">
+
+                            <div class="table-responsive">
+                                <table class="table align-middle admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Donation ID</th>
+                                            <th>Food</th>
+                                            <th>Type</th>
+                                            <th>Location</th>
+                                            <th>Pickup Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let donation of donations) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= donation._id %>
+                                                </td>
+                                                <td>
+                                                    <%= donation.quantity %>
+                                                </td>
+                                                <td>
+                                                    <%= donation.foodType %>
+                                                </td>
+                                                <td>
+                                                    <%= donation.location %>
+                                                </td>
+                                                <td>
+                                                    <%= donation.pickupTime %>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+
+
+
+            </div>
+            <!-- ==========================
+             VOLUNTEER ACTIVITY
+        =========================== -->
+
+
+            <!-- <section id="volunteers" class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h3>Volunteer Activity</h3>
+
+                        <p>
+                            Monitor volunteer delivery performance.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <div class="row text-center g-4">
+
+
+                        <div class="col-md-3">
+
+                            <div class="admin-impact">
+
+                                <i class="fas fa-users text-success"></i>
+
+                                <h3>1,200</h3>
+
+                                <p>Total Volunteers</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <div class="admin-impact">
+
+                                <i class="fas fa-user-check text-primary"></i>
+
+                                <h3>875</h3>
+
+                                <p>Active Today</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <div class="admin-impact">
+
+                                <i class="fas fa-truck-fast text-warning"></i>
+
+                                <h3>184</h3>
+
+                                <p>Deliveries Today</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <div class="admin-impact">
+
+                                <i class="fas fa-clock text-danger"></i>
+
+                                <h3>24</h3>
+
+                                <p>Pending Deliveries</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+ -->
+
+            <!-- ==========================
+             QR VERIFICATION
+        =========================== -->
+
+
+            <!-- <section id="verification" class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h3>QR Verification Activity</h3>
+
+                        <p>
+                            Monitor donation pickup and delivery verification.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-card">
+
+
+                    <div class="row text-center g-4">
+
+
+                        <div class="col-md-4">
+
+                            <div class="verification-stat">
+
+                                <i class="fas fa-qrcode text-success"></i>
+
+                                <h3>2,845</h3>
+
+                                <p>QR Codes Generated</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="verification-stat">
+
+                                <i class="fas fa-mobile-screen text-primary"></i>
+
+                                <h3>2,621</h3>
+
+                                <p>Successfully Verified</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="verification-stat">
+
+                                <i class="fas fa-clock text-warning"></i>
+
+                                <h3>224</h3>
+
+                                <p>Pending Verification</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section> -->
+
+
+        </main>
+
+    </div>
